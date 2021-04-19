@@ -15,6 +15,7 @@
 		913E0C5F262DA05C0046D33F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 913E0C5D262DA05C0046D33F /* LaunchScreen.storyboard */; };
 		913E0C6A262DA05C0046D33F /* SportsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913E0C69262DA05C0046D33F /* SportsTests.swift */; };
 		913E0C75262DA05C0046D33F /* SportsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913E0C74262DA05C0046D33F /* SportsUITests.swift */; };
+		913E0CA7262DAE350046D33F /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913E0CA6262DAE350046D33F /* Helper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		913E0C70262DA05C0046D33F /* SportsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SportsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		913E0C74262DA05C0046D33F /* SportsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportsUITests.swift; sourceTree = "<group>"; };
 		913E0C76262DA05C0046D33F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		913E0CA6262DAE350046D33F /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,13 @@
 		913E0C51262DA0590046D33F /* Sports */ = {
 			isa = PBXGroup;
 			children = (
+				913E0CA5262DAE260046D33F /* Helper */,
+				913E0CA1262DAB740046D33F /* LeaguesDetails */,
+				913E0C97262DA6C90046D33F /* TeamDetails */,
+				913E0C93262DA6880046D33F /* Leagues */,
+				913E0C8A262DA35F0046D33F /* Home */,
+				913E0C85262DA0830046D33F /* Model */,
+				913E0C8E262DA4980046D33F /* Services */,
 				913E0C52262DA0590046D33F /* AppDelegate.swift */,
 				913E0C54262DA0590046D33F /* SceneDelegate.swift */,
 				913E0C56262DA0590046D33F /* ViewController.swift */,
@@ -126,6 +135,200 @@
 				913E0C76262DA05C0046D33F /* Info.plist */,
 			);
 			path = SportsUITests;
+			sourceTree = "<group>";
+		};
+		913E0C85262DA0830046D33F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				913E0C86262DA1080046D33F /* Model Objects  */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		913E0C86262DA1080046D33F /* Model Objects  */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Model Objects ";
+			sourceTree = "<group>";
+		};
+		913E0C8A262DA35F0046D33F /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				913E0C9D262DA7020046D33F /* Model */,
+				913E0C9C262DA6FB0046D33F /* Presenter */,
+				913E0C8C262DA46C0046D33F /* View */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		913E0C8C262DA46C0046D33F /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		913E0C8E262DA4980046D33F /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				913E0CA0262DAB360046D33F /* Utility */,
+				913E0C9F262DAB0D0046D33F /* DataSource */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		913E0C8F262DA4A00046D33F /* Remote */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Remote;
+			sourceTree = "<group>";
+		};
+		913E0C90262DA4C00046D33F /* Local */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Local;
+			sourceTree = "<group>";
+		};
+		913E0C92262DA5590046D33F /* Repo */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Repo;
+			sourceTree = "<group>";
+		};
+		913E0C93262DA6880046D33F /* Leagues */ = {
+			isa = PBXGroup;
+			children = (
+				913E0C96262DA6C30046D33F /* Model */,
+				913E0C95262DA6B10046D33F /* Presenter */,
+				913E0C94262DA6AB0046D33F /* View */,
+			);
+			path = Leagues;
+			sourceTree = "<group>";
+		};
+		913E0C94262DA6AB0046D33F /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		913E0C95262DA6B10046D33F /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		913E0C96262DA6C30046D33F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		913E0C97262DA6C90046D33F /* TeamDetails */ = {
+			isa = PBXGroup;
+			children = (
+				913E0C9E262DA70D0046D33F /* Model */,
+				913E0C9B262DA6E60046D33F /* Presenter */,
+				913E0C99262DA6D90046D33F /* View */,
+			);
+			path = TeamDetails;
+			sourceTree = "<group>";
+		};
+		913E0C99262DA6D90046D33F /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		913E0C9B262DA6E60046D33F /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		913E0C9C262DA6FB0046D33F /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		913E0C9D262DA7020046D33F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		913E0C9E262DA70D0046D33F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		913E0C9F262DAB0D0046D33F /* DataSource */ = {
+			isa = PBXGroup;
+			children = (
+				913E0C90262DA4C00046D33F /* Local */,
+				913E0C92262DA5590046D33F /* Repo */,
+				913E0C8F262DA4A00046D33F /* Remote */,
+			);
+			path = DataSource;
+			sourceTree = "<group>";
+		};
+		913E0CA0262DAB360046D33F /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
+		913E0CA1262DAB740046D33F /* LeaguesDetails */ = {
+			isa = PBXGroup;
+			children = (
+				913E0CA4262DAB9A0046D33F /* Model */,
+				913E0CA3262DAB910046D33F /* Presenter */,
+				913E0CA2262DAB890046D33F /* View */,
+			);
+			path = LeaguesDetails;
+			sourceTree = "<group>";
+		};
+		913E0CA2262DAB890046D33F /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		913E0CA3262DAB910046D33F /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		913E0CA4262DAB9A0046D33F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		913E0CA5262DAE260046D33F /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				913E0CA6262DAE350046D33F /* Helper.swift */,
+			);
+			path = Helper;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -261,6 +464,7 @@
 				913E0C57262DA0590046D33F /* ViewController.swift in Sources */,
 				913E0C53262DA0590046D33F /* AppDelegate.swift in Sources */,
 				913E0C55262DA0590046D33F /* SceneDelegate.swift in Sources */,
+				913E0CA7262DAE350046D33F /* Helper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
