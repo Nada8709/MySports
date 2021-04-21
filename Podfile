@@ -7,7 +7,7 @@ target 'Sports' do
 
   # Pods for Sports
 	pod 'Alamofire', '~> 5.2'
-
+         pod 'SDWebImage', '~> 5.0'
   target 'SportsTests' do
     inherit! :search_paths
     # Pods for testing

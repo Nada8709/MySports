@@ -7,12 +7,12 @@
 
 import Foundation
 struct LeagueViewObject {
-    let strSport : String!
+    let strLeague : String!
     let idLeague : String!
     let strYoutube : String!
     let strBadge : String!
-    init(strSport :String!,idLeague : String!,strYoutube : String!, strBadge : String!) {
-        self.strSport=strSport
+    init(strLeague :String!,idLeague : String!,strYoutube : String!, strBadge : String!) {
+        self.strLeague=strLeague
         self.idLeague = idLeague
         self.strYoutube = strYoutube!
         self.strBadge = strBadge!

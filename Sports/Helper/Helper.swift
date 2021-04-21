@@ -9,7 +9,7 @@ import Foundation
 struct Helper {
     static let allSportsURL = "https://www.thesportsdb.com/api/v1/json/1/all_sports.php"
     
-    static let leaguesURL = "https://www.thesportsdb.com/api/v1/json/1/search_all_leagues.php?s=soccer"
+    static let leaguesURL = "https://www.thesportsdb.com/api/v1/json/1/search_all_leagues.php"
     
     static let leagueDetailsURL = "https://www.thesportsdb.com/api/v1/json/1/lookupleague.php?id=4346"
     
