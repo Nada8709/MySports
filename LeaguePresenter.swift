@@ -9,20 +9,11 @@ import Foundation
 import Alamofire
 class LeaguePresenter: LeaguePresenterProtocol {
     private let remotedatasource = Remote()
-   /* var getLeagueItems:([LeagueItem]) ->([LeagueViewObject]) = {
-        (allLeagues:[LeagueItem]) in
-        var allleagueviewobjects: ([LeagueViewObject])=[]
-        for league in allLeagues{
-            allleagueviewobjects.append(LeagueViewObject(strSport: league.strSport, idLeague: league.idLeague, strYoutube: league.strYoutube, strBadge: league.strBadge))
-        }
-        return allleagueviewobjects
-    }*/
-    
     func getLeagues(strSport: String!, completionHandler:@escaping ([LeagueViewObject]) ->Void)->Void {
-        remotedatasource.getAllLeagues(strSport: "") { (allLeagues) -> Void in
+        remotedatasource.getAllLeagues(strSport: strSport) { (allLeagues) -> Void in
             var allleagueviewobjects: ([LeagueViewObject])=[]
             for league in allLeagues{
-                allleagueviewobjects.append(LeagueViewObject(strSport: league.strSport, idLeague: league.idLeague, strYoutube: league.strYoutube, strBadge: league.strBadge))
+                allleagueviewobjects.append(LeagueViewObject(strLeague: league.strLeague, idLeague: league.idLeague, strYoutube: league.strYoutube, strBadge: league.strBadge))
             }
             if(allleagueviewobjects.count>0){
                 completionHandler(allleagueviewobjects)
