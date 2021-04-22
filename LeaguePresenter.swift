@@ -6,9 +6,9 @@
 //
 
 import Foundation
-import Alamofire
 class LeaguePresenter: LeaguePresenterProtocol {
     private let remotedatasource = Remote()
+    
     func getLeagues(strSport: String!, completionHandler:@escaping ([LeagueViewObject]) ->Void)->Void {
         remotedatasource.getAllLeagues(strSport: strSport) { (allLeagues) -> Void in
             var allleagueviewobjects: ([LeagueViewObject])=[]

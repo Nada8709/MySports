@@ -8,4 +8,7 @@
 import Foundation
 protocol RemoteProtocol {
     func getAllLeagues(strSport: String!, completionHandler:@escaping ([LeagueItem]) ->Void )
+    
+    
+    func getAllSports(completionHandler : @escaping ([Sport]) -> Void )
 }

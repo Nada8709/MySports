@@ -9,17 +9,25 @@ import UIKit
 import SDWebImage
 class LeaguesTableViewController: UITableViewController {
     private let leaguePresenter = LeaguePresenter()
+    
+    var selectedSport : String!
     var allleagueviewobjects: ([LeagueViewObject])=[]
     override func viewDidLoad() {
         super.viewDidLoad()
         print("DidLoad")
-        leaguePresenter.getLeagues(strSport: "soccer") { (allLeagues) in
-            if(allLeagues.count>0){
-                self.allleagueviewobjects=allLeagues
-                self.tableView.reloadData()
-            }
-            else{
-                print("viewcontroller")
+        
+        print("selected sport is\(selectedSport!)")
+        
+        
+        if let safeSelectedSport = selectedSport{
+            leaguePresenter.getLeagues(strSport: "soccer") { (allLeagues) in
+                if(allLeagues.count>0){
+                    self.allleagueviewobjects=allLeagues
+                    self.tableView.reloadData()
+                }
+                else{
+                    print("viewcontroller")
+                }
             }
         }
         // Uncomment the following line to preserve selection between presentations
@@ -46,7 +54,8 @@ class LeaguesTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     
-        let cell=self.tableView.dequeueReusableCell(withIdentifier: "cell") as! LeagueTableViewCell
+        let cell = self.tableView?.dequeueReusableCell(withIdentifier: "leagueCell")
+            as! LeagueTableViewCell
           cell.leaguename.text=allleagueviewobjects[indexPath.row].strLeague
           cell.leagueimage.sd_setImage(with: URL(string: allleagueviewobjects[indexPath.row].strBadge+"/tiny"), placeholderImage: UIImage(named: "1.jpg"))
         return cell
