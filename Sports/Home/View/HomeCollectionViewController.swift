@@ -11,20 +11,8 @@ import SDWebImage
 private let reuseIdentifier = "sportsCell"
 
 class HomeCollectionViewController: UICollectionViewController , UICollectionViewDelegateFlowLayout{
-    
-    
-   
-    
-
-    
     let homePresenter : HomePresenterProtocol = HomePresenter(remoteDataSource: Remote())
     var allSportsObjects = [Sport]()
-    let imageList = ["https://www.thesportsdb.com//images//sports//soccer.jpg"
-                     ,"https://www.thesportsdb.com//images//sports//soccer.jpg"
-                     ,"https://www.thesportsdb.com//images//sports//soccer.jpg"
-                     ,"https://www.thesportsdb.com//images//sports//soccer.jpg"
-                     ,"https://www.thesportsdb.com//images//sports//soccer.jpg"
-                     ,"https://www.thesportsdb.com//images//sports//soccer.jpg"]
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -43,22 +31,12 @@ class HomeCollectionViewController: UICollectionViewController , UICollectionVie
     }
 
     // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-        
-       
-        //allSportsObjects[]
-        //segue.destination.
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?){
     }
     override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
         homePresenter.onSelectedItem(selectedSport: allSportsObjects[indexPath.row])
         return true
     }
-
-
     // MARK: UICollectionViewDataSource
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -98,7 +76,6 @@ class HomeCollectionViewController: UICollectionViewController , UICollectionVie
            cell.layer.masksToBounds = false;
            cell.layer.shadowPath = UIBezierPath(roundedRect:cell.bounds, cornerRadius:cell.contentView.layer.cornerRadius).cgPath
     }
-    
     // for add padding
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
             return UIEdgeInsets(top: 2, left: 4, bottom: 2, right: 4)
@@ -108,43 +85,14 @@ class HomeCollectionViewController: UICollectionViewController , UICollectionVie
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: (UIScreen.main.bounds.width/2)-10, height: 150)
     }
-    
-    // MARK: UICollectionViewDelegate
-
-    /*
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment this method to specify if the specified item should be selected
-    override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
-    
-    }
-    */
 }
 
 extension HomeCollectionViewController : HomeDelegateProtocol {
+
     func navigateToLeaguges(selectedSport: String) {
-        let leagueVC = LeaguesTableViewController()
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let leagueVC = storyboard.instantiateViewController(withIdentifier: "LeaguesTableViewController") as!LeaguesTableViewController
         leagueVC.selectedSport = selectedSport
-       // present(leagueVC, animated: true, completion: nil)
-    }
+        present(leagueVC, animated: true, completion: nil)
+}
 }
