@@ -16,11 +16,12 @@ class LeaguesTableViewController: UITableViewController {
         super.viewDidLoad()
         print("DidLoad")
         
-        print("selected sport is\(selectedSport!)")
+        
         
         
         if let safeSelectedSport = selectedSport{
-            leaguePresenter.getLeagues(strSport: "soccer") { (allLeagues) in
+            print("selected sport is \(safeSelectedSport)")
+            leaguePresenter.getLeagues(strSport: safeSelectedSport) { (allLeagues) in
                 if(allLeagues.count>0){
                     self.allleagueviewobjects=allLeagues
                     self.tableView.reloadData()

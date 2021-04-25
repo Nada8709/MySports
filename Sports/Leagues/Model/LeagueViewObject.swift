@@ -11,10 +11,25 @@ struct LeagueViewObject {
     let idLeague : String!
     let strYoutube : String!
     let strBadge : String!
-    init(strLeague :String!,idLeague : String!,strYoutube : String!, strBadge : String!) {
+    
+    init(strLeague :String!,idLeague : String!,strYoutube : String?, strBadge : String!) {
         self.strLeague=strLeague
         self.idLeague = idLeague
-        self.strYoutube = strYoutube!
-        self.strBadge = strBadge!
+       
+        if let stryoutube = strYoutube {
+            self.strYoutube=stryoutube
+        }
+        else{
+            self.strYoutube=""
+        }
+        if let strbadge = strBadge {
+            self.strBadge = strbadge
+        }
+        else{
+            self.strBadge = "noBadge"
+        }
     }
 }
+
+
+
