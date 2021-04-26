@@ -16,6 +16,9 @@ class LatestResultsCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var awayScore: UILabel!
     @IBOutlet weak var homeScore: UILabel!
+    
+    @IBOutlet weak var homeImage: UIImageView!
+    @IBOutlet weak var awayImage: UIImageView!
     var latestresult:LatestResultsViewObject?
     {
         didSet{
@@ -25,6 +28,7 @@ class LatestResultsCollectionViewCell: UICollectionViewCell {
             homeTeam.text=latestresult?.strHomeTeam
             homeScore.text=latestresult?.intHomeScore
             awayScore.text=latestresult?.intAwayScore
+         
         }
     }
 }
