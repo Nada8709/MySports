@@ -14,4 +14,6 @@ struct UpcomingEventsViewObject{
     let strAwayTeam : String!
     let idHomeTeam : String!
     let idAwayTeam : String!
+    let HomeBadge : String?
+    let AwayBadge :String?
 }

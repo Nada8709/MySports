@@ -21,21 +21,20 @@ class GetBadges{
         }
         return latestresults
     }
-    func getBadgesForUpComing(allteams:[TeamsViewObject],allevents:[UpcomingEventsViewObject])->[LatestResultsViewObject] {
-        print(allteams.count)
-        var latestresults : [LatestResultsViewObject] = []
-        
-        for event in allevents{
+    func getBadgesForUpComing(allteams:[TeamsViewObject],events:[UpcomingEventsViewObject])->[UpcomingEventsViewObject] {
+        var upcomingEvents : [UpcomingEventsViewObject] = []
+        events.forEach { (eventObj) in
             let homebadge=allteams.first{
-                 $0.idTeam == event.idHomeTeam
+                 $0.idTeam == eventObj.idHomeTeam
             }?.strTeamBadge
             let awaybadge=allteams.first{
-                $0.idTeam == event.idAwayTeam
+                $0.idTeam == eventObj.idAwayTeam
             }?.strTeamBadge
-            latestresults.append(LatestResultsViewObject(strHomeTeam: event.strHomeTeam, strAwayTeam: event.strAwayTeam, intHomeScore: event.intHomeScore, intAwayScore: event.intAwayScore, dateEvent: event.dateEvent, strTime: event.strTime, idHomeTeam: event.idHomeTeam, idAwayTeam: event.idAwayTeam, HomeBadge: homebadge, AwayBadge: awaybadge))
-          
+            let temp = UpcomingEventsViewObject(strLeague: eventObj.strLeague, dateEvent: eventObj.dateEvent, strTime: eventObj.strTime, strHomeTeam: eventObj.strHomeTeam, strAwayTeam: eventObj.strAwayTeam, idHomeTeam: eventObj.idHomeTeam, idAwayTeam: eventObj.idAwayTeam, HomeBadge:homebadge, AwayBadge: awaybadge)
+            upcomingEvents.append(temp)
         }
-        return latestresults
+      
+        return upcomingEvents
     }
 
     

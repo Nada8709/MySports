@@ -13,6 +13,7 @@ class LeaguesDetailsPresenter: LeaguesDetailsPresenterProtocol {
         self.remote = remote
     }
     func getUpcomingEvents(completionHandler: @escaping ([Event]) -> Void) {
+        
         remote.getUpcomingEvents { (events) in
             if events.count > 0 {
                 completionHandler(events)
@@ -20,7 +21,9 @@ class LeaguesDetailsPresenter: LeaguesDetailsPresenterProtocol {
                 print("Error")
             }
         }
+        
     }
+    
     func getresults(idLeague: String!, completionHandler: @escaping ([LatestResultsViewObject]) -> Void) {
         remote.getLatestResults(idLeague: idLeague) { (events) in
             var latestResultsViewObject : [LatestResultsViewObject]=[]

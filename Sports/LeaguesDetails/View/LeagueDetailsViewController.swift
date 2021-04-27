@@ -42,16 +42,10 @@ class LeagueDetailsViewController: UIViewController, UICollectionViewDelegate{
                 self?.latestresults=(self?.getimages.getBadges(allteams: self!.teams, allevents: events))!
                 self?.latestResultCollectionView.reloadData()
             }
-            self?.leaguesPresenter.getUpcomingEvents(completionHandler: {[unowned self]events in
-                if events.count > 0 {
-                print(" event is : \(events[0].strEvent ?? "Empty")")
-                    events.forEach { (eventObj) in
-                        let temp = UpcomingEventsViewObject(strLeague: eventObj.strLeague, dateEvent: eventObj.dateEvent, strTime: eventObj.strTime, strHomeTeam: eventObj.strHomeTeam, strAwayTeam: eventObj.strAwayTeam, idHomeTeam: eventObj.idHomeTeam, idAwayTeam: eventObj.idAwayTeam)
-                        self?.upcomingEvents.append(temp)
-                    }
-                    self?.upcomingEventsCollectionView.reloadData()
-                }
+            self?.leaguesPresenter.getUpcomingEvents(completionHandler: {[unowned self] upcomingevents in
                 
+                self?.upcomingEvents=(self?.getimages.getBadges(allteams: self!.teams, allevents: upcomingevents))!
+                    self?.upcomingEventsCollectionView.reloadData()
             })
             
             
