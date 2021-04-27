@@ -11,33 +11,40 @@ class LeagueDetailsViewController: UIViewController {
     
     var latestresults:[LatestResultsViewObject]=[]
     var teams:[TeamsViewObject]=[]
+    var upcomingEvents : [UpcomingEventsViewObject] = []
     
     let identiferLatestCell = "latestCell"
     let identiferUpcomingCell = "upcomingCell"
     let identiferTeamCell = "teamCell"
+    var leaguesPresenter : LeaguesDetailsPresenterProtocol = LeaguesDetailsPresenter(Remote())
    
     @IBOutlet weak var favouriteImage: UIButton!
     @IBAction func favouriteBtn(_ sender: UIButton){
         favouriteImage.setImage(UIImage(systemName: "suit.heart.fill" ), for: .normal)
-
     }
     @IBOutlet weak var latestResultCollectionView: UICollectionView!
     @IBOutlet weak var upcomingEventsCollectionView: UICollectionView!
     @IBOutlet weak var teamscollectionview: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         upcomingEventsCollectionView.delegate=self
-      upcomingEventsCollectionView.dataSource=self
+        upcomingEventsCollectionView.dataSource=self
         latestResultCollectionView.delegate = self
         latestResultCollectionView.dataSource = self
         
         teamscollectionview.delegate = self
         teamscollectionview.dataSource = self
         
-        
-        
-        
+        leaguesPresenter.getUpcomingEvents(completionHandler: { events in
+            if events.count > 0 {
+            print(" event is : \(events[0].strEvent ?? "Empty")")
+                events.forEach { (eventObj) in
+                    let temp = UpcomingEventsViewObject(strLeague: eventObj.strLeague, dateEvent: eventObj.dateEvent, strTime: eventObj.strTime, strHomeTeam: eventObj.strHomeTeam, strAwayTeam: eventObj.strAwayTeam, idHomeTeam: eventObj.idHomeTeam, idAwayTeam: eventObj.idAwayTeam)
+                    self.upcomingEvents.append(temp)
+                }
+                self.upcomingEventsCollectionView.reloadData()
+            }
+        })
     }
  
     /*
@@ -51,25 +58,23 @@ class LeagueDetailsViewController: UIViewController {
     */
 
 }
-
 extension LeagueDetailsViewController: UICollectionViewDelegate{
     
 }
 extension LeagueDetailsViewController: UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if collectionView==upcomingEventsCollectionView{
-            return 4
+        if collectionView == upcomingEventsCollectionView{
+            return upcomingEvents.count
         }
         else if collectionView == latestResultCollectionView {
             return 4
         }
         return 4
     }
-    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if(collectionView == upcomingEventsCollectionView){
             let cell=upcomingEventsCollectionView.dequeueReusableCell(withReuseIdentifier: identiferUpcomingCell, for: indexPath) as! UpcomingEventsCollectionViewCell
-          //  cell.latestresult=latestresults[indexPath.row]
+           cell.upcomingEvent = upcomingEvents[indexPath.row]
             return cell
         }
         else if collectionView == latestResultCollectionView{
@@ -79,11 +84,8 @@ extension LeagueDetailsViewController: UICollectionViewDataSource{
         else {
             let cell=teamscollectionview.dequeueReusableCell(withReuseIdentifier: identiferTeamCell, for: indexPath) as! TeamsCollectionViewCell
             return cell
-            
         }
     }
-    
-    
 }
 extension LeagueDetailsViewController: UICollectionViewDelegateFlowLayout{
     

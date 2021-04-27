@@ -272,10 +272,12 @@
                                                                 <size key="customSize" width="353" height="202"/>
                                                                 <connections>
                                                                     <outlet property="awayImage" destination="DFP-Qt-gcn" id="4ET-gl-Ssg"/>
+                                                                    <outlet property="awayName" destination="wEE-jH-jbY" id="FuL-hi-XcP"/>
                                                                     <outlet property="date" destination="h6h-rr-16x" id="ADS-Tq-Vpr"/>
                                                                     <outlet property="homeImage" destination="H6I-yn-Dea" id="xZZ-ep-3CA"/>
+                                                                    <outlet property="homeName" destination="ttA-Jt-4gK" id="yRY-tR-Tr0"/>
                                                                     <outlet property="leagueName" destination="CPl-Ur-mXs" id="dhI-OM-p0i"/>
-                                                                    <outlet property="time" destination="ViQ-6F-8De" id="uvb-em-V1F"/>
+                                                                    <outlet property="time" destination="ViQ-6F-8De" id="xiY-28-6gG"/>
                                                                 </connections>
                                                             </collectionViewCell>
                                                         </cells>
@@ -540,17 +542,17 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="leagueCell" id="DXU-ti-p5Z" customClass="LeagueTableViewCell" customModule="Sports" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="414" height="100.33333587646484"/>
+                                <rect key="frame" x="0.0" y="28" width="414" height="100.66666412353516"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="DXU-ti-p5Z" id="jw6-HJ-Z7C">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="100.33333587646484"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="100.66666412353516"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZNy-ZU-Pf3">
-                                            <rect key="frame" x="10" y="10" width="394" height="80.333333333333329"/>
+                                            <rect key="frame" x="10" y="10" width="394" height="80.666666666666671"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PNt-9p-OxH">
-                                                    <rect key="frame" x="5" y="5" width="121" height="70.333333333333329"/>
+                                                    <rect key="frame" x="5" y="5" width="121" height="70.666666666666671"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yAY-8V-tuq">
                                                     <rect key="frame" x="136" y="18" width="253" height="20"/>
@@ -559,7 +561,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gDQ-9k-YwK">
-                                                    <rect key="frame" x="358.33333333333331" y="51.666666666666657" width="30.666666666666686" height="18.333333333333336"/>
+                                                    <rect key="frame" x="358.33333333333331" y="51.666666666666664" width="30.666666666666686" height="18.666666666666671"/>
                                                     <color key="tintColor" systemColor="systemRedColor"/>
                                                     <state key="normal" backgroundImage="play.rectangle.fill" catalog="system">
                                                         <color key="titleColor" systemColor="systemRedColor"/>
