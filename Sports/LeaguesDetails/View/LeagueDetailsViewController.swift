@@ -8,7 +8,8 @@
 import UIKit
 
 class LeagueDetailsViewController: UIViewController {
-    
+    private let leagueDetailsPresenter = LeagueDetailsPresenter()
+    private let getimages=GetBadges()
     var latestresults:[LatestResultsViewObject]=[]
     var teams:[TeamsViewObject]=[]
     
@@ -28,12 +29,20 @@ class LeagueDetailsViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         upcomingEventsCollectionView.delegate=self
-      upcomingEventsCollectionView.dataSource=self
+        upcomingEventsCollectionView.dataSource=self
         latestResultCollectionView.delegate = self
         latestResultCollectionView.dataSource = self
-        
         teamscollectionview.delegate = self
         teamscollectionview.dataSource = self
+        
+        leagueDetailsPresenter.getTeams(strLeague: "English Premier League") { [weak self] (allTeams) in
+            self?.teams=allTeams
+            self?.teamscollectionview.reloadData()
+            self?.leagueDetailsPresenter.getresults(idLeague: "4328") { [weak self] (events) in
+                self?.latestresults=(self?.getimages.getBadges(allteams: self!.teams, allevents: events))!
+                self?.latestResultCollectionView.reloadData()
+            }
+        }
         
         
         
@@ -61,9 +70,9 @@ extension LeagueDetailsViewController: UICollectionViewDataSource{
             return 4
         }
         else if collectionView == latestResultCollectionView {
-            return 4
+            return latestresults.count
         }
-        return 4
+        return teams.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -74,10 +83,14 @@ extension LeagueDetailsViewController: UICollectionViewDataSource{
         }
         else if collectionView == latestResultCollectionView{
             let cell=latestResultCollectionView.dequeueReusableCell(withReuseIdentifier: identiferLatestCell, for: indexPath) as! LatestResultsCollectionViewCell
+            cell.latestresult=latestresults[indexPath.row]
             return cell
         }
         else {
             let cell=teamscollectionview.dequeueReusableCell(withReuseIdentifier: identiferTeamCell, for: indexPath) as! TeamsCollectionViewCell
+           // cell.teamName.text=teams[indexPath.row].strTeam
+            
+           cell.team=teams[indexPath.row]
             return cell
             
         }

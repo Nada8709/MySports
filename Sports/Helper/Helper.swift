@@ -13,6 +13,9 @@ struct Helper {
     
     static let leagueDetailsURL = "https://www.thesportsdb.com/api/v1/json/1/lookupleague.php?id=4346"
     
+    static let leagueTeamsURL = "https://www.thesportsdb.com/api/v1/json/1/search_all_teams.php"
     
-    static let leagueTeamsURL = "https://www.thesportsdb.com/api/v1/json/1/search_all_teams.php?l=English%20Premier%20League"
+    static let LatestResultsURL = "https://www.thesportsdb.com/api/v1/json/1/eventspastleague.php"
+    
+    static let TeamDetailsURL = "https://www.thesportsdb.com/api/v1/json/1/lookupteam.php"
 }
