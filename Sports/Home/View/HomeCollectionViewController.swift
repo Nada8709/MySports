@@ -85,6 +85,8 @@ class HomeCollectionViewController: UICollectionViewController , UICollectionVie
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: (UIScreen.main.bounds.width/2)-10, height: 150)
     }
+    
+    
 }
 
 extension HomeCollectionViewController : HomeDelegateProtocol {

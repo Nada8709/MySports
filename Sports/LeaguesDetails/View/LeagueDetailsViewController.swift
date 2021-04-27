@@ -7,8 +7,7 @@
 
 import UIKit
 
-class LeagueDetailsViewController: UIViewController {
-    private let leagueDetailsPresenter = LeagueDetailsPresenter()
+class LeagueDetailsViewController: UIViewController, UICollectionViewDelegate{
     private let getimages=GetBadges()
     var latestresults:[LatestResultsViewObject]=[]
     var teams:[TeamsViewObject]=[]
@@ -35,22 +34,28 @@ class LeagueDetailsViewController: UIViewController {
         teamscollectionview.delegate = self
         teamscollectionview.dataSource = self
         
-        leaguesPresenter.getUpcomingEvents(completionHandler: { events in
-            if events.count > 0 {
-            print(" event is : \(events[0].strEvent ?? "Empty")")
-                events.forEach { (eventObj) in
-                    let temp = UpcomingEventsViewObject(strLeague: eventObj.strLeague, dateEvent: eventObj.dateEvent, strTime: eventObj.strTime, strHomeTeam: eventObj.strHomeTeam, strAwayTeam: eventObj.strAwayTeam, idHomeTeam: eventObj.idHomeTeam, idAwayTeam: eventObj.idAwayTeam)
-                    self.upcomingEvents.append(temp)
-                }
-                self.upcomingEventsCollectionView.reloadData()
-        leagueDetailsPresenter.getTeams(strLeague: "English Premier League") { [weak self] (allTeams) in
+        
+        leaguesPresenter.getTeams(strLeague: "English Premier League") { [weak self] (allTeams) in
             self?.teams=allTeams
             self?.teamscollectionview.reloadData()
-            self?.leagueDetailsPresenter.getresults(idLeague: "4328") { [weak self] (events) in
+            self?.leaguesPresenter.getresults(idLeague: "4328") { [weak self] (events) in
                 self?.latestresults=(self?.getimages.getBadges(allteams: self!.teams, allevents: events))!
                 self?.latestResultCollectionView.reloadData()
             }
-        })
+            self?.leaguesPresenter.getUpcomingEvents(completionHandler: {[unowned self]events in
+                if events.count > 0 {
+                print(" event is : \(events[0].strEvent ?? "Empty")")
+                    events.forEach { (eventObj) in
+                        let temp = UpcomingEventsViewObject(strLeague: eventObj.strLeague, dateEvent: eventObj.dateEvent, strTime: eventObj.strTime, strHomeTeam: eventObj.strHomeTeam, strAwayTeam: eventObj.strAwayTeam, idHomeTeam: eventObj.idHomeTeam, idAwayTeam: eventObj.idAwayTeam)
+                        self?.upcomingEvents.append(temp)
+                    }
+                    self?.upcomingEventsCollectionView.reloadData()
+                }
+                
+            })
+            
+            
+        }
     }
  
     /*
@@ -63,11 +68,8 @@ class LeagueDetailsViewController: UIViewController {
     }
     */
 
-}
-extension LeagueDetailsViewController: UICollectionViewDelegate{
-    
-}
-extension LeagueDetailsViewController: UICollectionViewDataSource{
+        }
+extension LeagueDetailsViewController : UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == upcomingEventsCollectionView{
             return upcomingEvents.count
@@ -97,6 +99,5 @@ extension LeagueDetailsViewController: UICollectionViewDataSource{
         }
     }
 }
-extension LeagueDetailsViewController: UICollectionViewDelegateFlowLayout{
-    
-}
+
+

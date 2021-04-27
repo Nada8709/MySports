@@ -12,7 +12,7 @@ class Remote: RemoteProtocol {
     func getLatestResults(idLeague: String!, completionHandler: @escaping ([Events]) -> Void) {
         let parameters = ["id": idLeague]
 
-        AF.request(Helper.LatestResultsURL,parameters: parameters).responseDecodable(of: LatestResults.self) { (response) in
+        AF.request(Helper.latestResultsURL,parameters: parameters).responseDecodable(of: LatestResults.self) { (response) in
             if(response.data != nil){
                 completionHandler((response.value)!.events)
             }
