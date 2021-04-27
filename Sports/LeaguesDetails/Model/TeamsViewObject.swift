@@ -9,4 +9,6 @@ import Foundation
 struct TeamsViewObject {
     let idTeam : String?
     let strTeamBadge : String?
+    let strTeam : String?
+    
 }

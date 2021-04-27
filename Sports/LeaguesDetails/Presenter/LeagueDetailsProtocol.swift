@@ -6,6 +6,8 @@
 //
 
 import Foundation
-protocol LeagueDetailsProtocol{
-    
+protocol LeagueDetailsProtocol {
+    func getTeams(strLeague : String!, completionHandler:@escaping ([TeamsViewObject]) ->Void)->Void
+    func getresults(idLeague : String!, completionHandler:@escaping ([LatestResultsViewObject]) ->Void)->Void
+    // func putHomeTeamBadge(idLeague : String!, completionHandler:@escaping ([LatestResultsViewObject]) ->Void)->Void
 }

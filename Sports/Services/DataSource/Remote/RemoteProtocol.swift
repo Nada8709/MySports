@@ -6,13 +6,16 @@
 //
 
 import Foundation
+import Alamofire
 protocol RemoteProtocol {
     func getAllLeagues(strSport: String!, completionHandler:@escaping ([LeagueItem]) ->Void )
-    
-    
     func getAllSports(completionHandler : @escaping ([Sport]) -> Void )
     
 //    func getData<T: Decodable>(from: String, decodable: T.Type, completion:@escaping (_ details: [T]) -> Void)
     
     func getUpcomingEvents(completionHandler : @escaping ([Event]) -> Void)
+    func getAllTeams(strLeague: String!,completionHandler:@escaping ([Team]) ->Void)
+    func getLatestResults(idLeague: String!,completionHandler:@escaping ([Events]) ->Void)
+    
 }
+

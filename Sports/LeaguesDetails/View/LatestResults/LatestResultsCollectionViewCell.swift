@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import SDWebImage
 class LatestResultsCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var date: UILabel!
@@ -28,7 +28,9 @@ class LatestResultsCollectionViewCell: UICollectionViewCell {
             homeTeam.text=latestresult?.strHomeTeam
             homeScore.text=latestresult?.intHomeScore
             awayScore.text=latestresult?.intAwayScore
-         
+            
+            homeImage.sd_setImage(with: URL(string: (latestresult?.HomeBadge)!+"/tiny"), placeholderImage: UIImage(named: "1.jpg"))
+            awayImage.sd_setImage(with: URL(string: (latestresult?.AwayBadge)!+"/tiny"), placeholderImage: UIImage(named: "1.jpg"))
         }
     }
 }

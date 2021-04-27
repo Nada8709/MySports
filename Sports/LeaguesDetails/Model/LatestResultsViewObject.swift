@@ -13,4 +13,8 @@ struct LatestResultsViewObject {
     let intAwayScore : String?
     let dateEvent : String?
     let strTime : String?
+    let idHomeTeam :String?
+    let idAwayTeam :String?
+    let HomeBadge : String?
+    let AwayBadge :String?
 }

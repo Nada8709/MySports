@@ -6,11 +6,16 @@
 //
 
 import UIKit
-
+import SDWebImage
 class TeamsCollectionViewCell: UICollectionViewCell{
      
     @IBOutlet weak var teamImage: UIImageView!
     @IBOutlet weak var teamName: UILabel!
     
-    
+    var team:TeamsViewObject?{
+        didSet{
+            teamName.text=team?.strTeam
+            teamImage.sd_setImage(with: URL(string: (team?.strTeamBadge)!+"/tiny"), placeholderImage: UIImage(named: "1.jpg"))
+        }
+    }
 }
