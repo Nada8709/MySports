@@ -15,7 +15,7 @@ class TeamsCollectionViewCell: UICollectionViewCell{
     var team:TeamsViewObject?{
         didSet{
             teamName.text=team?.strTeam
-            teamImage.sd_setImage(with: URL(string: (team?.strTeamBadge)!+"/tiny"), placeholderImage: UIImage(named: "1.jpg"))
+            teamImage.sd_setImage(with: URL(string: (team?.strTeamBadge ?? "" ) ?? ""), placeholderImage: UIImage(named: "image.png"))
         }
     }
 }

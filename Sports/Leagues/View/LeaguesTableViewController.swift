@@ -58,10 +58,17 @@ class LeaguesTableViewController: UITableViewController {
         let cell = self.tableView?.dequeueReusableCell(withIdentifier: "leagueCell")
             as! LeagueTableViewCell
           cell.leaguename.text=allleagueviewobjects[indexPath.row].strLeague
-          cell.leagueimage.sd_setImage(with: URL(string: allleagueviewobjects[indexPath.row].strBadge+"/tiny"), placeholderImage: UIImage(named: "1.jpg"))
+          cell.leagueimage.sd_setImage(with: URL(string: allleagueviewobjects[indexPath.row].strBadge+"/tiny"), placeholderImage: UIImage(named: "image.png"))
         return cell
     }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     
+        let leagueDetails = segue.destination as! LeagueDetailsViewController
+        
+        var selectedLeague = allleagueviewobjects[self.tableView.indexPathForSelectedRow?.row ?? 0]
+        leagueDetails.selectedIdLeague = selectedLeague.idLeague
+        leagueDetails.selectedStrLeague = selectedLeague.strLeague
+    }
 
     /*
     // Override to support conditional editing of the table view.

@@ -8,13 +8,12 @@
 import Foundation
 import Alamofire
 class Remote: RemoteProtocol {
-
     func getLatestResults(idLeague: String!, completionHandler: @escaping ([Events]) -> Void) {
         let parameters = ["id": idLeague]
 
         AF.request(Helper.latestResultsURL,parameters: parameters).responseDecodable(of: LatestResults.self) { (response) in
             if(response.data != nil){
-                completionHandler((response.value)!.events)
+                completionHandler((response.value)?.events ?? [])
             }
         }
     }
@@ -24,7 +23,7 @@ class Remote: RemoteProtocol {
 
         AF.request(Helper.leagueTeamsURL,parameters: parameters).responseDecodable(of: TeamsinLeague.self) { (response) in
             if(response.data != nil){
-                completionHandler((response.value)!.teams)
+                completionHandler((response.value)?.teams ?? [])
             }
         }
     }
@@ -32,7 +31,7 @@ class Remote: RemoteProtocol {
     func getAllSports(completionHandler: @escaping ([Sport]) -> Void) {
         AF.request(Helper.allSportsURL).responseDecodable(of: Sports.self) { (response) in
             if(response.data != nil){
-                completionHandler((response.value)!.sports!)
+                completionHandler((response.value)?.sports ?? [])
             }
         }
     }
@@ -42,18 +41,20 @@ class Remote: RemoteProtocol {
 
         AF.request(Helper.leaguesURL,parameters: parameters).responseDecodable(of: Leagues.self) { (response) in
             if(response.data != nil){
-                completionHandler((response.value)!.countrys)
+                completionHandler((response.value)?.countrys ?? [])
             }
         }
     }
     
     
-    func getUpcomingEvents(completionHandler : @escaping ([Event]) ->Void){
+    func getUpcomingEvents(idLeague:String,completionHandler : @escaping ([Event]) ->Void){
+        //?id=4328
+        let parameters = ["id": idLeague]
 
-        AF.request(Helper.upComingURL).responseDecodable(of:UpcomingEvents.self){
+        AF.request(Helper.upComingURL,parameters: parameters).responseDecodable(of:UpcomingEvents.self){
             (response) in
             if response.data != nil {
-                completionHandler((response.value)!.events)
+                completionHandler((response.value)?.events ?? [])
             }
         }
     }

@@ -13,6 +13,7 @@ private let reuseIdentifier = "sportsCell"
 class HomeCollectionViewController: UICollectionViewController , UICollectionViewDelegateFlowLayout{
     let homePresenter : HomePresenterProtocol = HomePresenter(remoteDataSource: Remote())
     var allSportsObjects = [Sport]()
+    var selectedItem : Int = 0
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -32,9 +33,19 @@ class HomeCollectionViewController: UICollectionViewController , UICollectionVie
 
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
+        
+        var league = segue.destination as! LeaguesTableViewController
+        
+        
+        let cell = sender as! HomeCollectionViewCell
+        league.selectedSport = allSportsObjects[selectedItem].strSport
     }
     override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
+        
+         selectedItem = indexPath.row
         homePresenter.onSelectedItem(selectedSport: allSportsObjects[indexPath.row])
+        
+        
         return true
     }
     // MARK: UICollectionViewDataSource
@@ -87,6 +98,9 @@ class HomeCollectionViewController: UICollectionViewController , UICollectionVie
     }
     
     
+   
+    
+    
 }
 
 extension HomeCollectionViewController : HomeDelegateProtocol {
@@ -95,6 +109,6 @@ extension HomeCollectionViewController : HomeDelegateProtocol {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let leagueVC = storyboard.instantiateViewController(withIdentifier: "LeaguesTableViewController") as!LeaguesTableViewController
         leagueVC.selectedSport = selectedSport
-        present(leagueVC, animated: true, completion: nil)
+      //  present(leagueVC, animated: true, completion: nil)
 }
 }

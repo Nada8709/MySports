@@ -12,16 +12,21 @@ class LeaguesDetailsPresenter: LeaguesDetailsPresenterProtocol {
     init(_ remote : RemoteProtocol) {
         self.remote = remote
     }
-    func getUpcomingEvents(completionHandler: @escaping ([Event]) -> Void) {
+    func getUpcomingEvents(idLeague:String!,completionHandler: @escaping ([UpcomingEventsViewObject]) -> Void) {
         
-        remote.getUpcomingEvents { (events) in
-            if events.count > 0 {
-                completionHandler(events)
+        remote.getUpcomingEvents(idLeague:idLeague) { (upcomingEvents) in
+            if (upcomingEvents).count > 0 {
+                
+                var upcomingObjects : [UpcomingEventsViewObject] = []
+                upcomingEvents.forEach { (event) in
+                    upcomingObjects.append(UpcomingEventsViewObject(strLeague: event.strLeague, dateEvent: event.dateEvent, strTime: event.strTime, strHomeTeam: event.strHomeTeam, strAwayTeam: event.strAwayTeam, idHomeTeam: event.idHomeTeam, idAwayTeam: event.idAwayTeam, HomeBadge: "", AwayBadge: ""))
+                }
+                
+                completionHandler(upcomingObjects)
             }else {
                 print("Error")
             }
         }
-        
     }
     
     func getresults(idLeague: String!, completionHandler: @escaping ([LatestResultsViewObject]) -> Void) {

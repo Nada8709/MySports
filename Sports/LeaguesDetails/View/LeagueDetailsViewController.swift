@@ -8,7 +8,7 @@
 import UIKit
 
 class LeagueDetailsViewController: UIViewController, UICollectionViewDelegate{
-    private let getimages=GetBadges()
+    private let getimages = GetBadges()
     var latestresults:[LatestResultsViewObject]=[]
     var teams:[TeamsViewObject]=[]
     var upcomingEvents : [UpcomingEventsViewObject] = []
@@ -17,6 +17,10 @@ class LeagueDetailsViewController: UIViewController, UICollectionViewDelegate{
     let identiferUpcomingCell = "upcomingCell"
     let identiferTeamCell = "teamCell"
     var leaguesPresenter : LeaguesDetailsPresenterProtocol = LeaguesDetailsPresenter(Remote())
+    
+    
+    var selectedIdLeague : String?
+    var selectedStrLeague : String?
    
     @IBOutlet weak var favouriteImage: UIButton!
     @IBAction func favouriteBtn(_ sender: UIButton){
@@ -34,21 +38,29 @@ class LeagueDetailsViewController: UIViewController, UICollectionViewDelegate{
         teamscollectionview.delegate = self
         teamscollectionview.dataSource = self
         
-        
-        leaguesPresenter.getTeams(strLeague: "English Premier League") { [weak self] (allTeams) in
-            self?.teams=allTeams
-            self?.teamscollectionview.reloadData()
-            self?.leaguesPresenter.getresults(idLeague: "4328") { [weak self] (events) in
-                self?.latestresults=(self?.getimages.getBadges(allteams: self!.teams, allevents: events))!
-                self?.latestResultCollectionView.reloadData()
-            }
-            self?.leaguesPresenter.getUpcomingEvents(completionHandler: {[unowned self] upcomingevents in
-                
-                self?.upcomingEvents=(self?.getimages.getBadges(allteams: self!.teams, allevents: upcomingevents))!
+        print(" selected str league : \(selectedStrLeague) \n  selected id is : \(selectedIdLeague)")
+        if let safeSelectedIdLeague = selectedIdLeague  , let safeSelectedStrLeague = selectedStrLeague {
+            print(" selected **safeStr league : \(safeSelectedStrLeague) \n  selected id is : \(safeSelectedIdLeague)")
+            leaguesPresenter.getTeams(strLeague: safeSelectedStrLeague) { [weak self] (allTeams) in
+                self?.teams=allTeams
+                self?.teamscollectionview.reloadData()
+                self?.leaguesPresenter.getresults(idLeague: safeSelectedIdLeague) { [weak self] (events) in
+                    self?.latestresults=(self?.getimages.getBadges(allteams: self!.teams, allevents: events))!
+                    self?.latestResultCollectionView.reloadData()
+                }
+                self?.leaguesPresenter.getUpcomingEvents(idLeague:safeSelectedIdLeague,completionHandler: {[unowned self] (upcomingevents) in
+                    
+                    self?.upcomingEvents = (self?.getimages.getBadgesForUpComing(allteams: self!.teams, events:upcomingevents))!
+                    
                     self?.upcomingEventsCollectionView.reloadData()
-            })
-            
-            
+                })
+                
+                
+                
+                
+            }
+        }else {
+            print("Error")
         }
     }
  
@@ -77,11 +89,14 @@ extension LeagueDetailsViewController : UICollectionViewDataSource{
         if(collectionView == upcomingEventsCollectionView){
             let cell=upcomingEventsCollectionView.dequeueReusableCell(withReuseIdentifier: identiferUpcomingCell, for: indexPath) as! UpcomingEventsCollectionViewCell
            cell.upcomingEvent = upcomingEvents[indexPath.row]
+            addShadowAndRaduisForCell(cell: cell)
+
             return cell
         }
         else if collectionView == latestResultCollectionView{
             let cell=latestResultCollectionView.dequeueReusableCell(withReuseIdentifier: identiferLatestCell, for: indexPath) as! LatestResultsCollectionViewCell
             cell.latestresult=latestresults[indexPath.row]
+            addShadowAndRaduisForCellLates(cell:cell)
             return cell
         }
         else {
@@ -92,6 +107,35 @@ extension LeagueDetailsViewController : UICollectionViewDataSource{
             return cell
         }
     }
+    
+    
+    func addShadowAndRaduisForCell(cell : UpcomingEventsCollectionViewCell){
+            cell.contentView.layer.cornerRadius = 10.0
+           cell.contentView.layer.borderWidth = 1.0
+           cell.contentView.layer.borderColor = UIColor.clear.cgColor
+           cell.contentView.layer.masksToBounds = true;
+
+           cell.layer.shadowColor = UIColor.lightGray.cgColor
+           cell.layer.shadowOffset = CGSize(width:0,height: 2.0)
+           cell.layer.shadowRadius = 2.0
+        cell.layer.shadowOpacity = 1.0
+           cell.layer.masksToBounds = false;
+           cell.layer.shadowPath = UIBezierPath(roundedRect:cell.bounds, cornerRadius:cell.contentView.layer.cornerRadius).cgPath
+    }
+    func addShadowAndRaduisForCellLates(cell : LatestResultsCollectionViewCell){
+            cell.contentView.layer.cornerRadius = 10.0
+           cell.contentView.layer.borderWidth = 1.0
+           cell.contentView.layer.borderColor = UIColor.clear.cgColor
+           cell.contentView.layer.masksToBounds = true;
+
+           cell.layer.shadowColor = UIColor.lightGray.cgColor
+           cell.layer.shadowOffset = CGSize(width:0,height: 2.0)
+        cell.layer.shadowRadius = 2.0
+           cell.layer.shadowOpacity = 1.0
+           cell.layer.masksToBounds = false;
+           cell.layer.shadowPath = UIBezierPath(roundedRect:cell.bounds, cornerRadius:cell.contentView.layer.cornerRadius).cgPath
+    }
+    
 }
 
 
