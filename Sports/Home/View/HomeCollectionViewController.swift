@@ -34,10 +34,10 @@ class HomeCollectionViewController: UICollectionViewController , UICollectionVie
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
         
-        var league = segue.destination as! LeaguesTableViewController
+        let league = segue.destination as! LeaguesTableViewController
         
         
-        let cell = sender as! HomeCollectionViewCell
+       // let cell = sender as! HomeCollectionViewCell
         league.selectedSport = allSportsObjects[selectedItem].strSport
     }
     override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {

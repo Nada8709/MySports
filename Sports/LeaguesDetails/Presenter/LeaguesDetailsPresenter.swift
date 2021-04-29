@@ -51,7 +51,7 @@ class LeaguesDetailsPresenter: LeaguesDetailsPresenterProtocol {
         remote.getAllTeams(strLeague: strLeague) { (allTeams) in
             var allTeamsViewObjects : [TeamsViewObject]=[]
             for team in allTeams{
-                allTeamsViewObjects.append(TeamsViewObject(idTeam: team.idTeam, strTeamBadge: team.strTeamBadge, strTeam: team.strTeam))
+                allTeamsViewObjects.append(TeamsViewObject(idTeam: team.idTeam, strTeamBadge: team.strTeamBadge, strTeam: team.strTeam, strWebsite: team.strWebsite, strFacebook: team.strFacebook, strTwitter: team.strTwitter, strYoutube: team.strYoutube, strDescriptionEN: team.strDescriptionEN, intFormedYear: team.intFormedYear, strCountry: team.strCountry,strLeague: team.strLeague,strStadium: team.strStadium,strTeamLogo: team.strTeamLogo,strStadiumThumb: team.strStadiumThumb))
             }
             if(allTeamsViewObjects.count>0){
                 completionHandler(allTeamsViewObjects)

@@ -30,8 +30,8 @@ class LatestResultsCollectionViewCell: UICollectionViewCell {
             awayScore.text=latestresult?.intAwayScore
             
             
-            homeImage.sd_setImage(with: URL(string: (latestresult?.HomeBadge ?? "" ) ?? ""), placeholderImage: UIImage(named: "image.png"))
-            awayImage.sd_setImage(with: URL(string: (latestresult?.AwayBadge ?? "") ?? "" ), placeholderImage: UIImage(named: "image.png"))
+            homeImage.sd_setImage(with: URL(string: (latestresult?.HomeBadge ?? "" ) ), placeholderImage: UIImage(named: "image.png"))
+            awayImage.sd_setImage(with: URL(string: (latestresult?.AwayBadge ?? "") ), placeholderImage: UIImage(named: "image.png"))
         }
     }
 }

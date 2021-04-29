@@ -16,9 +16,6 @@ class LeaguesTableViewController: UITableViewController {
         super.viewDidLoad()
         print("DidLoad")
         
-        
-        
-        
         if let safeSelectedSport = selectedSport{
             print("selected sport is \(safeSelectedSport)")
             leaguePresenter.getLeagues(strSport: safeSelectedSport) { (allLeagues) in
@@ -63,7 +60,9 @@ class LeaguesTableViewController: UITableViewController {
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     
-        let leagueDetails = segue.destination as! LeagueDetailsViewController
+        let destVC = segue.destination as! UINavigationController
+        let leagueDetails = destVC.topViewController as! LeagueDetailsViewController
+     //   let leagueDetails = segue.destination as! LeagueDetailsViewController
         
         var selectedLeague = allleagueviewobjects[self.tableView.indexPathForSelectedRow?.row ?? 0]
         leagueDetails.selectedIdLeague = selectedLeague.idLeague

@@ -22,11 +22,11 @@ class UpcomingEventsCollectionViewCell: UICollectionViewCell {
             time.text = upcomingEvent?.strTime
             
             
-            homeImage.sd_setImage(with: URL(string: (upcomingEvent?.HomeBadge ?? "") ?? ""), placeholderImage: UIImage(named: "image.png"))
+            homeImage.sd_setImage(with: URL(string: (upcomingEvent?.HomeBadge ?? "") ), placeholderImage: UIImage(named: "image.png"))
           //  print("home badge is : \(upcomingEvent?.HomeBadge)")
             
             //!+"/tiny"
-            awayImage.sd_setImage(with: URL(string: (upcomingEvent?.AwayBadge ?? "") ?? ""), placeholderImage: UIImage(named: "image.png"))
+            awayImage.sd_setImage(with: URL(string: (upcomingEvent?.AwayBadge ?? "") ), placeholderImage: UIImage(named: "image.png"))
             leagueName.text=upcomingEvent?.strLeague
         }
     }
