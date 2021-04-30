@@ -8,7 +8,7 @@
 import UIKit
 import SDWebImage
 class LeaguesTableViewController: UITableViewController {
-    private let leaguePresenter = LeaguePresenter()
+    private let leaguePresenter = LeaguePresenter(remote: Remote())
     
     var selectedSport : String!
     var allleagueviewobjects: ([LeagueViewObject])=[]
@@ -16,6 +16,7 @@ class LeaguesTableViewController: UITableViewController {
         super.viewDidLoad()
         print("DidLoad")
         
+        leaguePresenter.setDelegate(leaguesVC: self)
         if let safeSelectedSport = selectedSport{
             print("selected sport is \(safeSelectedSport)")
             leaguePresenter.getLeagues(strSport: safeSelectedSport) { (allLeagues) in
@@ -28,11 +29,6 @@ class LeaguesTableViewController: UITableViewController {
                 }
             }
         }
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
     // MARK: - Table view data source
@@ -59,14 +55,17 @@ class LeaguesTableViewController: UITableViewController {
         return cell
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        let destVC = segue.destination as! UINavigationController
+//        let leagueDetails = destVC.topViewController as! LeagueDetailsViewController
+//        let selectedLeague = allleagueviewobjects[self.tableView.indexPathForSelectedRow?.row ?? 0]
+//        leagueDetails.selectedIdLeague = selectedLeague.idLeague
+//        leagueDetails.selectedStrLeague = selectedLeague.strLeague
+    }
     
-        let destVC = segue.destination as! UINavigationController
-        let leagueDetails = destVC.topViewController as! LeagueDetailsViewController
-     //   let leagueDetails = segue.destination as! LeagueDetailsViewController
-        
-        var selectedLeague = allleagueviewobjects[self.tableView.indexPathForSelectedRow?.row ?? 0]
-        leagueDetails.selectedIdLeague = selectedLeague.idLeague
-        leagueDetails.selectedStrLeague = selectedLeague.strLeague
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("item selected is \(String(describing: allleagueviewobjects[indexPath.row].strLeague))")
+        leaguePresenter.onItemSelected(itemSelected: allleagueviewobjects[indexPath.row])
     }
 
     /*
@@ -113,5 +112,42 @@ class LeaguesTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    func navigateToLink(nameOfLink : String?) {
+        if let safelink =  nameOfLink , !(nameOfLink?.isEmpty ?? false) {
+            UIApplication.shared.open(URL(string: "http://"+safelink)!)
+        }else {
+            showAlert(title:"Sorry",message: "Link not found")
+        }
+        
+    }
+    func showAlert(title:String,message:String)  {
+        let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+            switch action.style{
+                case .default:
+                print("default")
+                case .cancel:
+                print("cancel")
+                case .destructive:
+                print("destructive")
+            }
+        }))
+        self.present(alert, animated: true, completion: nil)
+    }
 
+}
+extension LeaguesTableViewController : LeaguesTableProtocol{
+    func navigateToLeagueDetails(selectedIdLeague: String, selectedStrLeague: String) {
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        let leagueDetailsVC = storyboard.instantiateViewController(withIdentifier: "LeagueDetailsViewController") as!LeagueDetailsViewController
+        leagueDetailsVC.selectedIdLeague = selectedIdLeague
+        leagueDetailsVC.selectedStrLeague = selectedStrLeague
+        let navigationController = UINavigationController(rootViewController: leagueDetailsVC)
+        
+        present(navigationController, animated: true, completion: nil)
+        
+    }
 }

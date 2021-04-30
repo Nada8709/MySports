@@ -96,19 +96,13 @@ class HomeCollectionViewController: UICollectionViewController , UICollectionVie
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: (UIScreen.main.bounds.width/2)-10, height: 150)
     }
-    
-    
-   
-    
-    
 }
 
 extension HomeCollectionViewController : HomeDelegateProtocol {
-
     func navigateToLeaguges(selectedSport: String) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let leagueVC = storyboard.instantiateViewController(withIdentifier: "LeaguesTableViewController") as!LeaguesTableViewController
         leagueVC.selectedSport = selectedSport
-      //  present(leagueVC, animated: true, completion: nil)
-}
+        //  present(leagueVC, animated: true, completion: nil)
+    }
 }

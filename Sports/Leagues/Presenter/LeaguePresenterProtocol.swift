@@ -8,4 +8,6 @@
 import Foundation
 protocol LeaguePresenterProtocol {
     func getLeagues(strSport : String!, completionHandler:@escaping ([LeagueViewObject]) ->Void)->Void
+    
+    func onItemSelected(itemSelected:LeagueViewObject)
 }

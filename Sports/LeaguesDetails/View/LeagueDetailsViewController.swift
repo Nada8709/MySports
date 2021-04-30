@@ -22,10 +22,8 @@ class LeagueDetailsViewController: UIViewController, UICollectionViewDelegate{
     
     var selectedIdLeague : String?
     var selectedStrLeague : String?
-    
-    
     var selectedTeamToTeamDetails : TeamsViewObject?
-   
+    
     @IBOutlet weak var favouriteImage: UIButton!
     @IBAction func favouriteBtn(_ sender: UIButton){
         favouriteImage.setImage(UIImage(systemName: "suit.heart.fill" ), for: .normal)
@@ -69,27 +67,25 @@ class LeagueDetailsViewController: UIViewController, UICollectionViewDelegate{
             print("Error")
         }
     }
- 
+    
     // MARK: - Navigation
-
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
         let teamDetailsVC = segue.destination as! TeamDetailsViewController
         teamDetailsVC.selectedTeamObj = self.selectedTeamToTeamDetails
     }
     func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
         
-         if  collectionView == teamscollectionview {
-                    self.selectedTeamToTeamDetails = teams[indexPath.row]
-                }
+        if  collectionView == teamscollectionview {
+            self.selectedTeamToTeamDetails = teams[indexPath.row]
+        }
         
         return true
     }
     
-
-        }
+    
+}
 extension LeagueDetailsViewController : UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == upcomingEventsCollectionView{
@@ -103,9 +99,9 @@ extension LeagueDetailsViewController : UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if(collectionView == upcomingEventsCollectionView){
             let cell=upcomingEventsCollectionView.dequeueReusableCell(withReuseIdentifier: identiferUpcomingCell, for: indexPath) as! UpcomingEventsCollectionViewCell
-           cell.upcomingEvent = upcomingEvents[indexPath.row]
+            cell.upcomingEvent = upcomingEvents[indexPath.row]
             addShadowAndRaduisForCell(cell: cell)
-
+            
             return cell
         }
         else if collectionView == latestResultCollectionView{
@@ -116,24 +112,22 @@ extension LeagueDetailsViewController : UICollectionViewDataSource{
         }
         else {
             let cell=teamscollectionview.dequeueReusableCell(withReuseIdentifier: identiferTeamCell, for: indexPath) as! TeamsCollectionViewCell
-           // cell.teamName.text=teams[indexPath.row].strTeam
-            
-           cell.team=teams[indexPath.row]
+            cell.team=teams[indexPath.row]
             return cell
         }
     }
     func addShadowAndRaduisForCell(cell : UICollectionViewCell){
-            cell.contentView.layer.cornerRadius = 10.0
-           cell.contentView.layer.borderWidth = 1.0
-           cell.contentView.layer.borderColor = UIColor.clear.cgColor
-           cell.contentView.layer.masksToBounds = true;
-
-           cell.layer.shadowColor = UIColor.lightGray.cgColor
-           cell.layer.shadowOffset = CGSize(width:0,height: 2.0)
+        cell.contentView.layer.cornerRadius = 10.0
+        cell.contentView.layer.borderWidth = 1.0
+        cell.contentView.layer.borderColor = UIColor.clear.cgColor
+        cell.contentView.layer.masksToBounds = true;
+        
+        cell.layer.shadowColor = UIColor.lightGray.cgColor
+        cell.layer.shadowOffset = CGSize(width:0,height: 2.0)
         cell.layer.shadowRadius = 2.0
-           cell.layer.shadowOpacity = 1.0
-           cell.layer.masksToBounds = false;
-           cell.layer.shadowPath = UIBezierPath(roundedRect:cell.bounds, cornerRadius:cell.contentView.layer.cornerRadius).cgPath
+        cell.layer.shadowOpacity = 1.0
+        cell.layer.masksToBounds = false;
+        cell.layer.shadowPath = UIBezierPath(roundedRect:cell.bounds, cornerRadius:cell.contentView.layer.cornerRadius).cgPath
     }
     
 }

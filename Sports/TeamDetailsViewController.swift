@@ -90,8 +90,6 @@ class TeamDetailsViewController: UIViewController {
         teamYear.text = team.intFormedYear
         teamStaduim.text = team.strStadium
         leagueName.text = team.strLeague
-        
-        
         print("youtube link is \(String(describing: team.strYoutube))")
         print("facebook  link is \(String(describing: team.strFacebook))")
         print("tweeter link is \(String(describing: team.strTwitter))")
@@ -109,7 +107,6 @@ class TeamDetailsViewController: UIViewController {
                 
                 case .cancel:
                 print("cancel")
-                
                 case .destructive:
                 print("destructive")
                 

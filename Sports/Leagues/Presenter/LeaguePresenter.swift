@@ -7,10 +7,20 @@
 
 import Foundation
 class LeaguePresenter: LeaguePresenterProtocol {
-    private let remotedatasource = Remote()
+    
+    private var  remotedatasource : RemoteProtocol?
+    private var leaguesVC  : LeaguesTableProtocol?
+    
+    init(remote : RemoteProtocol) {
+        self.remotedatasource = remote
+        self.leaguesVC = nil
+    }
+    func setDelegate(leaguesVC:LeaguesTableProtocol) {
+        self.leaguesVC = leaguesVC
+    }
     
     func getLeagues(strSport: String!, completionHandler:@escaping ([LeagueViewObject]) ->Void)->Void {
-        remotedatasource.getAllLeagues(strSport: strSport) { (allLeagues) -> Void in
+        remotedatasource?.getAllLeagues(strSport: strSport) { (allLeagues) -> Void in
             var allleagueviewobjects: ([LeagueViewObject])=[]
             for league in allLeagues{
                 allleagueviewobjects.append(LeagueViewObject(strLeague: league.strLeague, idLeague: league.idLeague, strYoutube: league.strYoutube, strBadge: league.strBadge))
@@ -22,10 +32,14 @@ class LeaguePresenter: LeaguePresenterProtocol {
                 print("LeaguePresenter")
             }
         }
-
-        }
-    
+        
+    }
+    func onItemSelected(itemSelected: LeagueViewObject) {
+        leaguesVC?.navigateToLeagueDetails(selectedIdLeague: itemSelected.idLeague, selectedStrLeague: itemSelected.strLeague)
     }
     
-   
+    
+}
+
+
 

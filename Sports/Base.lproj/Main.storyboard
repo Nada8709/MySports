@@ -102,10 +102,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="g1J-1H-uVD">
-                                <rect key="frame" x="0.0" y="44" width="414" height="206"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="255"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UL9-Up-Z6O" userLabel="containerView">
-                                <rect key="frame" x="16" y="266" width="382" height="405"/>
+                                <rect key="frame" x="16" y="315" width="382" height="405"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Year" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NVw-ct-JRI">
                                         <rect key="frame" x="245" y="16" width="129" height="45"/>
@@ -136,7 +136,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Country" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uhI-52-PJ0">
-                                        <rect key="frame" x="16" y="244.66666666666669" width="61" height="20.333333333333314"/>
+                                        <rect key="frame" x="16" y="244.66666666666663" width="61" height="20.333333333333314"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -280,7 +280,7 @@
         <!--League Details View Controller-->
         <scene sceneID="C6y-ms-PhH">
             <objects>
-                <viewController id="UAV-Zz-553" customClass="LeagueDetailsViewController" customModule="Sports" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LeagueDetailsViewController" id="UAV-Zz-553" customClass="LeagueDetailsViewController" customModule="Sports" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ljp-iY-S2g">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -316,7 +316,7 @@
                                 </constraints>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dwu-7T-vBJ">
-                                <rect key="frame" x="0.0" y="114" width="414" height="573"/>
+                                <rect key="frame" x="0.0" y="114" width="414" height="622"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="8zf-gW-PCc">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="777"/>
@@ -732,7 +732,6 @@
                                     <outlet property="cellview" destination="ZNy-ZU-Pf3" id="tFa-XO-6t9"/>
                                     <outlet property="leagueimage" destination="PNt-9p-OxH" id="i15-cE-xcu"/>
                                     <outlet property="leaguename" destination="yAY-8V-tuq" id="G8q-B8-9qW"/>
-                                    <segue destination="6vX-fs-07r" kind="showDetail" id="hfa-ha-ZeP"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
