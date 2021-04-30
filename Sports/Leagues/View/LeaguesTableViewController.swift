@@ -9,12 +9,16 @@ import UIKit
 import SDWebImage
 class LeaguesTableViewController: UITableViewController {
     private let leaguePresenter = LeaguePresenter(remote: Remote())
-    
+    private let favouritePresenter = FavouritePresenter()
     var selectedSport : String!
+    var isFavourite:Bool=false
     var allleagueviewobjects: ([LeagueViewObject])=[]
+    let appDelegate=UIApplication.shared.delegate as! AppDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         print("DidLoad")
+    }
+    override func viewWillAppear(_ animated: Bool) {
         
         leaguePresenter.setDelegate(leaguesVC: self)
         if let safeSelectedSport = selectedSport{
@@ -29,8 +33,14 @@ class LeaguesTableViewController: UITableViewController {
                 }
             }
         }
+        else{
+            print("favourites")
+            self.allleagueviewobjects = favouritePresenter.getLeaguesFromFavourite(appdelegate: appDelegate)
+            print(allleagueviewobjects)
+            self.tableView.reloadData()
+            isFavourite=true
+        }
     }
-
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return "Leagues"
@@ -138,16 +148,30 @@ class LeaguesTableViewController: UITableViewController {
 
 }
 extension LeaguesTableViewController : LeaguesTableProtocol{
-    func navigateToLeagueDetails(selectedIdLeague: String, selectedStrLeague: String) {
+  
+    func navigateToLeagueDetails( selectedLeague: LeagueViewObject) {
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
         let leagueDetailsVC = storyboard.instantiateViewController(withIdentifier: "LeagueDetailsViewController") as!LeagueDetailsViewController
-        leagueDetailsVC.selectedIdLeague = selectedIdLeague
-        leagueDetailsVC.selectedStrLeague = selectedStrLeague
+        leagueDetailsVC.selectedLeague = selectedLeague
+        leagueDetailsVC.isFavourite=isFavourite
         let navigationController = UINavigationController(rootViewController: leagueDetailsVC)
-        
+        if isFavourite==false{
         present(navigationController, animated: true, completion: nil)
+        }
+        else{
+            if Reachability.isConnectedToNetwork(){
+                present(navigationController, animated: true, completion: nil)
+            }
+            else{
+                let alert = UIAlertController(title: "Error", message: "There is no Internet Connection", preferredStyle: .alert)
+
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+
+                self.present(alert, animated: true)
+            }
+        }
         
     }
 }

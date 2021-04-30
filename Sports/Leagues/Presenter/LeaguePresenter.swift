@@ -35,7 +35,7 @@ class LeaguePresenter: LeaguePresenterProtocol {
         
     }
     func onItemSelected(itemSelected: LeagueViewObject) {
-        leaguesVC?.navigateToLeagueDetails(selectedIdLeague: itemSelected.idLeague, selectedStrLeague: itemSelected.strLeague)
+        leaguesVC?.navigateToLeagueDetails(selectedLeague: itemSelected)
     }
     
     

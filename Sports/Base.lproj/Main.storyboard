@@ -10,21 +10,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="tne-QT-ifu">
-            <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Sports" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-213" y="79"/>
-        </scene>
         <!--Home-->
         <scene sceneID="4LB-Jg-GKK">
             <objects>
@@ -260,22 +245,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ucr-Ss-VQS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4365.217391304348" y="857.60869565217399"/>
-        </scene>
-        <!--Tab Bar Controller-->
-        <scene sceneID="9qW-nv-Dce">
-            <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="Nf5-6L-9de" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Dbf-Wj-PeY">
-                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    </tabBar>
-                </tabBarController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="WYb-MM-gSU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="531.8840579710145" y="77.678571428571431"/>
+            <point key="canvasLocation" x="5541" y="850"/>
         </scene>
         <!--League Details View Controller-->
         <scene sceneID="C6y-ms-PhH">
@@ -664,9 +634,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5OA-mn-fCn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3273.913043478261" y="850.27173913043487"/>
+            <point key="canvasLocation" x="4638" y="849"/>
         </scene>
-        <!--Leagues Table View Controller-->
+        <!--Favourite-->
         <scene sceneID="BMO-pV-Xj1">
             <objects>
                 <tableViewController storyboardIdentifier="LeaguesTableViewController" id="Wbx-DY-PVS" customClass="LeaguesTableViewController" customModule="Sports" customModuleProvider="target" sceneMemberID="viewController">
@@ -676,17 +646,17 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="leagueCell" id="DXU-ti-p5Z" customClass="LeagueTableViewCell" customModule="Sports" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="414" height="100.66666412353516"/>
+                                <rect key="frame" x="0.0" y="28" width="414" height="100.33333587646484"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="DXU-ti-p5Z" id="jw6-HJ-Z7C">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="100.66666412353516"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="100.33333587646484"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZNy-ZU-Pf3">
-                                            <rect key="frame" x="10" y="10" width="394" height="80.666666666666671"/>
+                                            <rect key="frame" x="10" y="10" width="394" height="80.333333333333329"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PNt-9p-OxH">
-                                                    <rect key="frame" x="5" y="5" width="121" height="70.666666666666671"/>
+                                                    <rect key="frame" x="5" y="5" width="121" height="70.333333333333329"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yAY-8V-tuq">
                                                     <rect key="frame" x="136" y="18" width="253" height="20"/>
@@ -695,7 +665,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gDQ-9k-YwK">
-                                                    <rect key="frame" x="358.33333333333331" y="51.666666666666664" width="30.666666666666686" height="18.666666666666671"/>
+                                                    <rect key="frame" x="358.33333333333331" y="51.666666666666657" width="30.666666666666686" height="18.333333333333336"/>
                                                     <color key="tintColor" systemColor="systemRedColor"/>
                                                     <state key="normal" backgroundImage="play.rectangle.fill" catalog="system">
                                                         <color key="titleColor" systemColor="systemRedColor"/>
@@ -740,11 +710,12 @@
                             <outlet property="delegate" destination="Wbx-DY-PVS" id="N4d-Xm-Iiu"/>
                         </connections>
                     </tableView>
+                    <tabBarItem key="tabBarItem" title="Favourite" selectedImage="heart.fill" catalog="system" id="8MG-xo-0tN"/>
                     <navigationItem key="navigationItem" id="acf-e2-d8j"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zsa-mf-gyD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1442" y="859"/>
+            <point key="canvasLocation" x="2042" y="1073"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="v1O-yG-j0N">
@@ -777,6 +748,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="2P3-MO-Ft7" kind="relationship" relationship="viewControllers" id="BvY-YG-mJE"/>
+                        <segue destination="Wbx-DY-PVS" kind="relationship" relationship="viewControllers" id="6WZ-Zg-h9J"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DXp-bb-Amp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -799,12 +771,16 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zhl-gi-eAx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2366.666666666667" y="850.27173913043487"/>
+            <point key="canvasLocation" x="3772" y="849"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="6WZ-Zg-h9J"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="facebook" width="512" height="512"/>
         <image name="heart" catalog="system" width="128" height="109"/>
+        <image name="heart.fill" catalog="system" width="128" height="109"/>
         <image name="play.rectangle.fill" catalog="system" width="128" height="93"/>
         <image name="twitter" width="512" height="512"/>
         <image name="worldwide" width="512" height="512"/>

@@ -7,5 +7,5 @@
 
 import Foundation
 protocol LeaguesTableProtocol {
-    func navigateToLeagueDetails(selectedIdLeague:String,selectedStrLeague: String)
+    func navigateToLeagueDetails(selectedLeague:LeagueViewObject)
 }

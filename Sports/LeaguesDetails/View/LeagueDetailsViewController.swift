@@ -12,21 +12,32 @@ class LeagueDetailsViewController: UIViewController, UICollectionViewDelegate{
     var latestresults:[LatestResultsViewObject]=[]
     var teams:[TeamsViewObject]=[]
     var upcomingEvents : [UpcomingEventsViewObject] = []
+    private let favouritePresenter = FavouritePresenter()
+    let appDelegate=UIApplication.shared.delegate as! AppDelegate
+
     @IBOutlet weak var leagueNameHeader: UILabel!
     
     let identiferLatestCell = "latestCell"
     let identiferUpcomingCell = "upcomingCell"
     let identiferTeamCell = "teamCell"
     var leaguesPresenter : LeaguesDetailsPresenterProtocol = LeaguesDetailsPresenter(Remote())
-    
-    
-    var selectedIdLeague : String?
-    var selectedStrLeague : String?
+    var favouriteLeagues:[LeagueViewObject]=[]
+    var isFavourite:Bool=false
+    var alreadyFavourite:Bool=false
+    var selectedLeague : LeagueViewObject!
     var selectedTeamToTeamDetails : TeamsViewObject?
     
     @IBOutlet weak var favouriteImage: UIButton!
     @IBAction func favouriteBtn(_ sender: UIButton){
         favouriteImage.setImage(UIImage(systemName: "suit.heart.fill" ), for: .normal)
+        favouritePresenter.saveLeaguetoFavourite(selectedleague: selectedLeague, appdelegate: appDelegate)
+        if alreadyFavourite{
+            alreadyFavourite=false
+            favouritePresenter.deleteLeagueFromFavourite(selectedLeague: selectedLeague, appdelegate: appDelegate)
+            presentingViewController?.reloadInputViews()
+           // print(selectedLeague.strLeague)
+            favouriteImage.setImage(UIImage(systemName: "suit.heart" ), for: .normal)
+        }
     }
     @IBOutlet weak var latestResultCollectionView: UICollectionView!
     @IBOutlet weak var upcomingEventsCollectionView: UICollectionView!
@@ -40,18 +51,28 @@ class LeagueDetailsViewController: UIViewController, UICollectionViewDelegate{
         teamscollectionview.delegate = self
         teamscollectionview.dataSource = self
         
-        print(" selected str league : \(selectedStrLeague) \n  selected id is : \(selectedIdLeague)")
-        if let safeSelectedIdLeague = selectedIdLeague  , let safeSelectedStrLeague = selectedStrLeague {
-            self.leagueNameHeader.text = safeSelectedStrLeague
-            print(" selected **safeStr league : \(safeSelectedStrLeague) \n  selected id is : \(safeSelectedIdLeague)")
-            leaguesPresenter.getTeams(strLeague: safeSelectedStrLeague) { [weak self] (allTeams) in
+       favouriteLeagues=favouritePresenter.getLeaguesFromFavourite(appdelegate: appDelegate)
+        let ishere=favouriteLeagues.first{
+             $0.idLeague == selectedLeague.idLeague
+        }
+        if ishere != nil{
+            favouriteImage.setImage(UIImage(systemName: "suit.heart.fill" ), for: .normal)
+            alreadyFavourite=true
+        }
+        if isFavourite{
+            favouriteImage.setImage(UIImage(systemName: "suit.heart.fill" ), for: .normal)
+            alreadyFavourite=true
+        }
+      
+        self.leagueNameHeader.text = selectedLeague.strLeague
+        leaguesPresenter.getTeams(strLeague: selectedLeague.strLeague) { [weak self] (allTeams) in
                 self?.teams=allTeams
                 self?.teamscollectionview.reloadData()
-                self?.leaguesPresenter.getresults(idLeague: safeSelectedIdLeague) { [weak self] (events) in
+            self?.leaguesPresenter.getresults(idLeague: self?.selectedLeague.idLeague) { [weak self] (events) in
                     self?.latestresults=(self?.getimages.getBadges(allteams: self!.teams, allevents: events))!
                     self?.latestResultCollectionView.reloadData()
                 }
-                self?.leaguesPresenter.getUpcomingEvents(idLeague:safeSelectedIdLeague,completionHandler: {[unowned self] (upcomingevents) in
+            self?.leaguesPresenter.getUpcomingEvents(idLeague:self?.selectedLeague.idLeague,completionHandler: {[unowned self] (upcomingevents) in
                     
                     self?.upcomingEvents = (self?.getimages.getBadgesForUpComing(allteams: self!.teams, events:upcomingevents))!
                     
@@ -63,9 +84,7 @@ class LeagueDetailsViewController: UIViewController, UICollectionViewDelegate{
                 
                 
             }
-        }else {
-            print("Error")
-        }
+        
     }
     
     // MARK: - Navigation
