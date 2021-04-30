@@ -13,8 +13,6 @@ class UpcomingEventsCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var homeImage: UIImageView!
     @IBOutlet weak var date: UILabel!
     @IBOutlet weak var leagueName: UILabel!
-    @IBOutlet weak var homeName: UILabel!
-    @IBOutlet weak var awayName: UILabel!
     var upcomingEvent:UpcomingEventsViewObject?
     {
         didSet{
@@ -23,11 +21,10 @@ class UpcomingEventsCollectionViewCell: UICollectionViewCell {
             
             
             homeImage.sd_setImage(with: URL(string: (upcomingEvent?.HomeBadge ?? "") ), placeholderImage: UIImage(named: "image.png"))
-          //  print("home badge is : \(upcomingEvent?.HomeBadge)")
             
-            //!+"/tiny"
+            
             awayImage.sd_setImage(with: URL(string: (upcomingEvent?.AwayBadge ?? "") ), placeholderImage: UIImage(named: "image.png"))
-            leagueName.text=upcomingEvent?.strLeague
+            leagueName.text=upcomingEvent?.strEvent
         }
     }
 }

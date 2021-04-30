@@ -59,11 +59,11 @@ class Local: LocalProtocol {
                 }
                
              }
-            managedcontext.delete(deletingLeague)
-            print("Deleted")
+            managedcontext.delete(deletingLeague!)
+          print(deletingLeague)
             try managedcontext.save()
-         }catch _ as NSError{
-             print ("Error !!!")
+         }catch let error as NSError{
+            print ("delete Error \(error)")
          }
         print("afterdeleting")
          do{

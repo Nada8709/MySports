@@ -30,7 +30,7 @@ class GetBadges{
             let awaybadge=allteams.first{
                 $0.idTeam == eventObj.idAwayTeam
             }?.strTeamBadge
-            let temp = UpcomingEventsViewObject(strLeague: eventObj.strLeague, dateEvent: eventObj.dateEvent, strTime: eventObj.strTime, strHomeTeam: eventObj.strHomeTeam, strAwayTeam: eventObj.strAwayTeam, idHomeTeam: eventObj.idHomeTeam, idAwayTeam: eventObj.idAwayTeam, HomeBadge:homebadge, AwayBadge: awaybadge)
+            let temp = UpcomingEventsViewObject(strEvent: eventObj.strEvent, strLeague: eventObj.strLeague, dateEvent: eventObj.dateEvent, strTime: eventObj.strTime, strHomeTeam: eventObj.strHomeTeam, strAwayTeam: eventObj.strAwayTeam, idHomeTeam: eventObj.idHomeTeam, idAwayTeam: eventObj.idAwayTeam, HomeBadge:homebadge, AwayBadge: awaybadge)
             upcomingEvents.append(temp)
         }
       

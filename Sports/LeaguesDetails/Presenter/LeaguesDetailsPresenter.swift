@@ -19,7 +19,7 @@ class LeaguesDetailsPresenter: LeaguesDetailsPresenterProtocol {
                 
                 var upcomingObjects : [UpcomingEventsViewObject] = []
                 upcomingEvents.forEach { (event) in
-                    upcomingObjects.append(UpcomingEventsViewObject(strLeague: event.strLeague, dateEvent: event.dateEvent, strTime: event.strTime, strHomeTeam: event.strHomeTeam, strAwayTeam: event.strAwayTeam, idHomeTeam: event.idHomeTeam, idAwayTeam: event.idAwayTeam, HomeBadge: "", AwayBadge: ""))
+                    upcomingObjects.append(UpcomingEventsViewObject(strEvent: event.strEvent, strLeague: event.strLeague, dateEvent: event.dateEvent, strTime: event.strTime, strHomeTeam: event.strHomeTeam, strAwayTeam: event.strAwayTeam, idHomeTeam: event.idHomeTeam, idAwayTeam: event.idAwayTeam, HomeBadge: "", AwayBadge: ""))
                 }
                 
                 completionHandler(upcomingObjects)

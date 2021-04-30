@@ -7,6 +7,7 @@
 
 import Foundation
 struct UpcomingEventsViewObject{
+    let strEvent : String!
     let strLeague : String!
     let dateEvent : String!
     let strTime : String!
